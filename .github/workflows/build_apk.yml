@@ -25,7 +25,7 @@ jobs:
 
       # Генерирует свежую папку android под текущую версию Gradle/Flutter
       - name: Recreate Android platform files
-        run: flutter create --platforms=android .
+        run: flutter create --project-name darkfree --platforms=android .
 
       - run: flutter pub get
 
