@@ -23,9 +23,14 @@ jobs:
           flutter-version: '3.22.x'
           channel: 'stable'
 
-      # Генерирует свежую папку android под текущую версию Gradle/Flutter
       - name: Recreate Android platform files
         run: flutter create --project-name darkfree --platforms=android .
+
+      # Выставляем minSdkVersion 21 (требуется для V2Ray VPN ядра)
+      - name: Configure Android SDK version
+        run: |
+          sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/g' android/app/build.gradle || true
+          sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 21/g' android/app/build.gradle || true
 
       - run: flutter pub get
 
